@@ -1,0 +1,294 @@
+'use client'
+
+import { useState } from 'react'
+
+type Tab = 'typescript' | 'python' | 'curl'
+
+function CopyButton({ text }: { text: string }) {
+  const [copied, setCopied] = useState(false)
+
+  const copy = async () => {
+    await navigator.clipboard.writeText(text)
+    setCopied(true)
+    setTimeout(() => setCopied(false), 2000)
+  }
+
+  return (
+    <button
+      onClick={copy}
+      style={{
+        background: 'none',
+        border: '1px solid var(--border)',
+        borderRadius: 6,
+        color: copied ? 'var(--success)' : 'var(--ink-dim)',
+        cursor: 'pointer',
+        fontFamily: 'var(--font-mono)',
+        fontSize: 11,
+        padding: '4px 10px',
+        transition: 'all 0.15s',
+      }}
+    >
+      {copied ? 'copied!' : 'copy'}
+    </button>
+  )
+}
+
+const TS_CODE = `import { Telnext } from '@telnext/sdk'
+
+const client = new Telnext({
+  apiKey: process.env.TELNEXT_API_KEY
+})
+
+const result = await client.location.verify({
+  phoneNumber: '+5511999990000',
+  latitude: -23.5505,
+  longitude: -46.6333,
+  radius: 300,
+})
+
+console.log(result.verificationResult)
+// → { withinRadius: true, carrier: 'Vivo', confidence: 0.97 }`
+
+const PY_CODE = `from telnext import Telnext
+
+client = Telnext(api_key=os.environ["TELNEXT_API_KEY"])
+
+result = client.location.verify(
+    phone_number="+5511999990000",
+    latitude=-23.5505,
+    longitude=-46.6333,
+    radius=300
+)
+
+print(result.verification_result)
+# → { within_radius: True, carrier: 'Vivo', confidence: 0.97 }`
+
+const CURL_CODE = `curl -X POST https://api.telnext.dev/v1/location/verify \\
+  -H "Authorization: Bearer $TELNEXT_API_KEY" \\
+  -H "Content-Type: application/json" \\
+  -d '{
+    "phoneNumber": "+5511999990000",
+    "latitude": -23.5505,
+    "longitude": -46.6333,
+    "radius": 300
+  }'`
+
+function TSCode() {
+  return (
+    <pre className="t-code" style={{ color: 'var(--ink-mute)' }}>
+      <span className="syn-keyword">import</span>
+      {' { '}
+      <span className="syn-prop">Telnext</span>
+      {' } '}
+      <span className="syn-keyword">from</span>
+      {' '}
+      <span className="syn-string">&apos;@telnext/sdk&apos;</span>
+      {'\n\n'}
+      <span className="syn-keyword">const</span>
+      {' client = '}
+      <span className="syn-keyword">new</span>
+      {' '}
+      <span className="syn-fn">Telnext</span>
+      {'({\n'}
+      {'  apiKey: '}
+      <span className="syn-prop">process</span>
+      {'.env.'}
+      <span className="syn-prop">TELNEXT_API_KEY</span>
+      {'\n'}
+      {'})\n\n'}
+      <span className="syn-keyword">const</span>
+      {' result = '}
+      <span className="syn-keyword">await</span>
+      {' client.'}
+      <span className="syn-prop">location</span>
+      {'.'}
+      <span className="syn-fn">verify</span>
+      {'({\n'}
+      {'  phoneNumber: '}
+      <span className="syn-string">&apos;+5511999990000&apos;</span>
+      {',\n'}
+      {'  latitude: '}
+      <span className="syn-number">-23.5505</span>
+      {',\n'}
+      {'  longitude: '}
+      <span className="syn-number">-46.6333</span>
+      {',\n'}
+      {'  radius: '}
+      <span className="syn-number">300</span>
+      {',\n'}
+      {'})\n\n'}
+      <span className="syn-prop">console</span>
+      {'.'}
+      <span className="syn-fn">log</span>
+      {'(result.'}
+      <span className="syn-prop">verificationResult</span>
+      {')\n'}
+      <span className="syn-comment">
+        {'// → { withinRadius: true, carrier: \'Vivo\', confidence: 0.97 }'}
+      </span>
+    </pre>
+  )
+}
+
+function PyCode() {
+  return (
+    <pre className="t-code" style={{ color: 'var(--ink-mute)' }}>
+      <span className="syn-keyword">from</span>
+      {' telnext '}
+      <span className="syn-keyword">import</span>
+      {' Telnext\n\n'}
+      {'client = '}
+      <span className="syn-fn">Telnext</span>
+      {'(api_key=os.environ['}
+      <span className="syn-string">&quot;TELNEXT_API_KEY&quot;</span>
+      {'])\n\n'}
+      {'result = client.location.'}
+      <span className="syn-fn">verify</span>
+      {'(\n'}
+      {'    phone_number='}
+      <span className="syn-string">&quot;+5511999990000&quot;</span>
+      {',\n'}
+      {'    latitude='}
+      <span className="syn-number">-23.5505</span>
+      {',\n'}
+      {'    longitude='}
+      <span className="syn-number">-46.6333</span>
+      {',\n'}
+      {'    radius='}
+      <span className="syn-number">300</span>
+      {'\n)\n\n'}
+      <span className="syn-fn">print</span>
+      {'(result.verification_result)\n'}
+      <span className="syn-comment">
+        {"# → { within_radius: True, carrier: 'Vivo', confidence: 0.97 }"}
+      </span>
+    </pre>
+  )
+}
+
+function CurlCode() {
+  return (
+    <pre className="t-code" style={{ color: 'var(--ink-mute)' }}>
+      {'curl -X POST '}
+      <span className="syn-string">https://api.telnext.dev/v1/location/verify</span>
+      {' \\\n'}
+      {'  -H '}
+      <span className="syn-string">&quot;Authorization: Bearer $TELNEXT_API_KEY&quot;</span>
+      {' \\\n'}
+      {'  -H '}
+      <span className="syn-string">&quot;Content-Type: application/json&quot;</span>
+      {' \\\n'}
+      {"  -d '{\n"}
+      {'    '}
+      <span className="syn-key">&quot;phoneNumber&quot;</span>
+      {': '}
+      <span className="syn-string">&quot;+5511999990000&quot;</span>
+      {',\n'}
+      {'    '}
+      <span className="syn-key">&quot;latitude&quot;</span>
+      {': '}
+      <span className="syn-number">-23.5505</span>
+      {',\n'}
+      {'    '}
+      <span className="syn-key">&quot;longitude&quot;</span>
+      {': '}
+      <span className="syn-number">-46.6333</span>
+      {',\n'}
+      {'    '}
+      <span className="syn-key">&quot;radius&quot;</span>
+      {': '}
+      <span className="syn-number">300</span>
+      {"\n  }'"}
+    </pre>
+  )
+}
+
+const TABS: { id: Tab; label: string; code: string }[] = [
+  { id: 'typescript', label: 'TypeScript', code: TS_CODE },
+  { id: 'python', label: 'Python', code: PY_CODE },
+  { id: 'curl', label: 'cURL', code: CURL_CODE },
+]
+
+export default function CodeWindow() {
+  const [active, setActive] = useState<Tab>('typescript')
+  const activeTab = TABS.find((t) => t.id === active)!
+
+  return (
+    <section className="section" id="code">
+      <div className="container">
+        <div style={{ maxWidth: 760, margin: '0 auto' }}>
+          <div
+            style={{
+              background: 'var(--bg-elev-2)',
+              border: '1px solid var(--border)',
+              borderRadius: 12,
+              overflow: 'hidden',
+            }}
+          >
+            {/* Window chrome */}
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                padding: '12px 16px',
+                borderBottom: '1px solid var(--border-subtle)',
+                background: 'var(--bg-elev-3)',
+              }}
+            >
+              {/* Traffic lights */}
+              <div style={{ display: 'flex', gap: 6 }}>
+                {['#FF5F57', '#FEBC2E', '#28C840'].map((color) => (
+                  <div
+                    key={color}
+                    style={{
+                      width: 10,
+                      height: 10,
+                      borderRadius: '50%',
+                      background: color,
+                      opacity: 0.6,
+                    }}
+                  />
+                ))}
+              </div>
+
+              {/* Tabs */}
+              <div style={{ display: 'flex', gap: 2 }}>
+                {TABS.map((tab) => (
+                  <button
+                    key={tab.id}
+                    onClick={() => setActive(tab.id)}
+                    style={{
+                      background: active === tab.id ? 'var(--bg-elev-2)' : 'none',
+                      border: '1px solid',
+                      borderColor: active === tab.id ? 'var(--border)' : 'transparent',
+                      borderRadius: 6,
+                      color: active === tab.id ? 'var(--ink)' : 'var(--ink-dim)',
+                      cursor: 'pointer',
+                      fontFamily: 'var(--font-mono)',
+                      fontSize: 11,
+                      fontWeight: 500,
+                      padding: '4px 10px',
+                      transition: 'all 0.15s',
+                    }}
+                  >
+                    {tab.label}
+                  </button>
+                ))}
+              </div>
+
+              <CopyButton text={activeTab.code} />
+            </div>
+
+            {/* Code content */}
+            <div style={{ padding: '24px 28px', overflowX: 'auto' }}>
+              {active === 'typescript' && <TSCode />}
+              {active === 'python' && <PyCode />}
+              {active === 'curl' && <CurlCode />}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  )
+}
