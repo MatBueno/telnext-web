@@ -16,7 +16,7 @@ const en: Dict = {
     ctaPrimary: 'start for free',
     ctaSecondary: 'view docs',
     stats: [
-      { value: '3', label: 'security APIs' },
+      { value: '6+', label: 'security APIs' },
       { value: '<200ms', label: 'verification' },
       { value: 'tier-1', label: 'CPaaS partners' },
       { value: '99.9%', label: 'uptime SLA' },

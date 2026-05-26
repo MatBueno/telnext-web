@@ -16,7 +16,7 @@ const ptBr: Dict = {
     ctaPrimary: 'comece grátis',
     ctaSecondary: 'ver docs',
     stats: [
-      { value: '3', label: 'APIs de segurança' },
+      { value: '6+', label: 'APIs de segurança' },
       { value: '<200ms', label: 'verificação' },
       { value: 'tier-1', label: 'parceiros CPaaS' },
       { value: '99.9%', label: 'uptime SLA' },
