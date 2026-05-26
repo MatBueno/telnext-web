@@ -2,10 +2,10 @@ import type { Dict } from '@/lib/i18n'
 
 export default function Footer({ dict, lang }: { dict: Dict['footer']; lang: string }) {
   const links = [
-    { label: 'docs', href: `/${lang}/docs` },
-    { label: 'status', href: 'https://status.telnext.dev' },
-    { label: 'github', href: 'https://github.com/telnext' },
-    { label: 'privacy', href: `/${lang}/privacy` },
+    { label: dict.links.docs, href: `/${lang}/docs` },
+    { label: dict.links.status, href: 'https://status.telnext.dev' },
+    { label: dict.links.github, href: 'https://github.com/telnext' },
+    { label: dict.links.privacy, href: `/${lang}/privacy` },
   ]
 
   return (

@@ -78,7 +78,16 @@ export type Dict = {
     errorNetwork: string
     footnote: string
   }
-  footer: { copyright: string }
+  footer: {
+    copyright: string
+    links: { docs: string; status: string; github: string; privacy: string }
+  }
+  onboarding: {
+    label: string
+    title: string
+    body: string
+    steps: { number: string; title: string; description: string }[]
+  }
   codeWindow: { copy: string; copied: string }
 }
 

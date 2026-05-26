@@ -1,5 +1,5 @@
 import { notFound } from 'next/navigation'
-import { getDictionary, isValidLocale, type Locale } from '@/lib/i18n'
+import { getDictionary, isValidLocale, type Locale, type Dict } from '@/lib/i18n'
 import Nav from '@/components/nav'
 import Hero from '@/components/hero'
 import CodeWindow from '@/components/code-window'
@@ -11,8 +11,6 @@ import InfrastructureSection from '@/components/infrastructure-section'
 import PricingSection from '@/components/pricing-section'
 import Waitlist from '@/components/waitlist'
 import Footer from '@/components/footer'
-import { STEPS } from '@/lib/constants'
-
 export function generateStaticParams() {
   return [{ lang: 'en' }, { lang: 'pt-br' }, { lang: 'es' }]
 }
@@ -31,7 +29,7 @@ export default function Home({ params }: { params: { lang: string } }) {
         <ApisSection dict={dict.apis} />
         <CoverageMap />
         <SandboxWidget />
-        <OnboardingSteps />
+        <OnboardingSteps dict={dict.onboarding} />
         <InfrastructureSection dict={dict.infrastructure} />
         <PricingSection dict={dict.pricing} />
         <Waitlist dict={dict.waitlist} />
@@ -41,19 +39,19 @@ export default function Home({ params }: { params: { lang: string } }) {
   )
 }
 
-function OnboardingSteps() {
+function OnboardingSteps({ dict }: { dict: Dict['onboarding'] }) {
   return (
     <section className="section">
       <div className="container">
         <div style={{ marginBottom: 56 }}>
           <p className="t-label" style={{ color: 'var(--blue-500)', marginBottom: 12 }}>
-            getting started
+            {dict.label}
           </p>
           <h2 className="t-h2" style={{ color: 'var(--ink)', marginBottom: 12 }}>
-            From zero to production
+            {dict.title}
           </h2>
           <p className="t-body" style={{ color: 'var(--ink-dim)', maxWidth: 480 }}>
-            No contracts. No approval queues. No custom SDKs per carrier.
+            {dict.body}
           </p>
         </div>
         <div
@@ -67,7 +65,7 @@ function OnboardingSteps() {
             overflow: 'hidden',
           }}
         >
-          {STEPS.map((step) => (
+          {dict.steps.map((step) => (
             <div key={step.number} style={{ background: 'var(--bg-elev-1)', padding: '28px 24px' }}>
               <span
                 style={{

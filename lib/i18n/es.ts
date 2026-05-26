@@ -133,7 +133,21 @@ const es: Dict = {
     errorNetwork: 'Error de red. Inténtalo de nuevo.',
     footnote: 'Respetamos tu bandeja de entrada. Cancela la suscripción en cualquier momento.',
   },
-  footer: { copyright: '© 2025 telnext.dev — Seguridad silenciosa para servicios financieros' },
+  footer: {
+    copyright: '© 2025 telnext.dev — Seguridad silenciosa para servicios financieros',
+    links: { docs: 'docs', status: 'status', github: 'github', privacy: 'privacidad' },
+  },
+  onboarding: {
+    label: 'primeros pasos',
+    title: 'De cero a producción',
+    body: 'Sin contratos. Sin colas de aprobación. Sin SDKs por operadora.',
+    steps: [
+      { number: '01', title: 'crea una cuenta', description: 'Credenciales de sandbox de inmediato, sin aprobación necesaria.' },
+      { number: '02', title: 'explora el sandbox', description: 'Respuestas simuladas para todas las APIs, prueba cada caso de uso.' },
+      { number: '03', title: 'verifica la cobertura', description: 'Disponibilidad de operadora en tiempo real por país y API.' },
+      { number: '04', title: 'pasa a producción', description: 'Cambia la clave sandbox por la clave live, cero refactorización.' },
+    ],
+  },
   codeWindow: { copy: 'copiar', copied: '¡copiado!' },
 }
 

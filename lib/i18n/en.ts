@@ -133,7 +133,21 @@ const en: Dict = {
     errorNetwork: 'Network error. Please try again.',
     footnote: 'We respect your inbox. Unsubscribe any time.',
   },
-  footer: { copyright: '© 2025 telnext.dev — Silent security for financial services' },
+  footer: {
+    copyright: '© 2025 telnext.dev — Silent security for financial services',
+    links: { docs: 'docs', status: 'status', github: 'github', privacy: 'privacy' },
+  },
+  onboarding: {
+    label: 'getting started',
+    title: 'From zero to production',
+    body: 'No contracts. No approval queues. No custom SDKs per carrier.',
+    steps: [
+      { number: '01', title: 'create account', description: 'Sandbox credentials immediately, no approval needed.' },
+      { number: '02', title: 'explore sandbox', description: 'Full mock responses for all APIs, test every edge case.' },
+      { number: '03', title: 'check coverage', description: 'Real-time carrier availability by country and API.' },
+      { number: '04', title: 'ship to production', description: 'Swap sandbox key for live key, zero refactoring.' },
+    ],
+  },
   codeWindow: { copy: 'copy', copied: 'copied!' },
 }
 

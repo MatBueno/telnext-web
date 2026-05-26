@@ -133,7 +133,21 @@ const ptBr: Dict = {
     errorNetwork: 'Erro de rede. Tente novamente.',
     footnote: 'Respeitamos sua caixa de entrada. Cancele a inscrição a qualquer momento.',
   },
-  footer: { copyright: '© 2025 telnext.dev — Segurança silenciosa para serviços financeiros' },
+  footer: {
+    copyright: '© 2025 telnext.dev — Segurança silenciosa para serviços financeiros',
+    links: { docs: 'docs', status: 'status', github: 'github', privacy: 'privacidade' },
+  },
+  onboarding: {
+    label: 'primeiros passos',
+    title: 'Do zero à produção',
+    body: 'Sem contratos. Sem filas de aprovação. Sem SDKs por operadora.',
+    steps: [
+      { number: '01', title: 'crie uma conta', description: 'Credenciais de sandbox imediatamente, sem aprovação necessária.' },
+      { number: '02', title: 'explore o sandbox', description: 'Respostas simuladas para todas as APIs, teste cada caso de uso.' },
+      { number: '03', title: 'verifique a cobertura', description: 'Disponibilidade de operadora em tempo real por país e API.' },
+      { number: '04', title: 'envie para produção', description: 'Troque a chave sandbox pela chave live, zero refatoração.' },
+    ],
+  },
   codeWindow: { copy: 'copiar', copied: 'copiado!' },
 }
 
