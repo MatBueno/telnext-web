@@ -57,7 +57,15 @@ export default function Hero({ dict, lang }: { dict: HeroDict; lang: string }) {
           </div>
 
           {/* Headline */}
-          <h1 className="t-display" style={{ color: 'var(--ink)', marginBottom: 8 }}>
+          {/* PT/ES use a tighter clamp so the gradient line stays single-line */}
+          <h1
+            className="t-display"
+            style={{
+              color: 'var(--ink)',
+              marginBottom: 8,
+              ...(lang !== 'en' && { fontSize: 'clamp(38px, 5.2vw, 72px)' }),
+            }}
+          >
             {dict.headline1}
           </h1>
           <h1
@@ -69,6 +77,7 @@ export default function Hero({ dict, lang }: { dict: HeroDict; lang: string }) {
               WebkitBackgroundClip: 'text',
               backgroundClip: 'text',
               marginBottom: 24,
+              ...(lang !== 'en' && { fontSize: 'clamp(38px, 5.2vw, 72px)' }),
             }}
           >
             {dict.headline2}

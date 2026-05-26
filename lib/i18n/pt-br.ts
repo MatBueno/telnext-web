@@ -10,7 +10,7 @@ const ptBr: Dict = {
   hero: {
     badge: 'Disponível agora para bancos e fintechs na LATAM',
     headline1: 'Segurança silenciosa',
-    headline2: 'para serviços financeiros.',
+    headline2: 'no setor financeiro.',
     sub: 'Sem contratos de operadora. Sem atrito. Sem OTP.',
     body: 'A Telnext oferece verificação de identidade em tempo real para bancos e fintechs usando dados da rede da operadora — o sinal mais forte disponível.',
     ctaPrimary: 'comece grátis',
