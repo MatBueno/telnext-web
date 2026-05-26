@@ -63,7 +63,30 @@ const en: Dict = {
         endpoint: '/v1/location/verify',
       },
     ],
-    comingApis: ['Quality on Demand', 'Device Status', 'Network-based OTP', 'Carrier Billing', 'Roaming Status', 'KYC Match', 'Silent Authentication'],
+    comingSoonApis: [
+      {
+        name: 'Roaming Status',
+        businessValue: 'Flags impossible travel and cross-border fraud before a transaction clears.',
+        how: 'Returns whether the device is currently roaming and in which country — using live network data, no GPS required.',
+        useCases: ['Impossible travel', 'cross-border fraud', 'high-risk market blocks'],
+        endpoint: '/v1/roaming/status',
+      },
+      {
+        name: 'KYC Match',
+        businessValue: 'Carrier-verified identity match — no document uploads, no manual review queues.',
+        how: 'Checks that subscriber name and date of birth on file with the carrier match what the user provided during onboarding.',
+        useCases: ['Account opening', 'KYC compliance', 'identity step-up'],
+        endpoint: '/v1/kyc/match',
+      },
+      {
+        name: 'Silent Authentication',
+        businessValue: 'Authenticate users in the background — zero OTP, zero user friction.',
+        how: 'Creates a secure challenge URL and verifies the device responds over the correct carrier data session — invisible to the user.',
+        useCases: ['Passive login', 'session continuity', 'step-up auth'],
+        endpoint: '/v1/auth/silent',
+      },
+    ],
+    comingApis: ['Quality on Demand', 'Device Status', 'Network-based OTP', 'Carrier Billing'],
   },
   infrastructure: {
     label: 'infrastructure',

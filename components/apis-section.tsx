@@ -1,15 +1,9 @@
 import type { Dict } from '@/lib/i18n'
 
-const ICONS = [
+const LIVE_ICONS = [
   <svg key="number" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
     <rect x="4" y="2" width="12" height="16" rx="2" stroke="currentColor" strokeWidth="1.5" />
-    <path
-      d="M7 10L9 12L13 8"
-      stroke="currentColor"
-      strokeWidth="1.5"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    />
+    <path d="M7 10L9 12L13 8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
   </svg>,
   <svg key="sim" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
     <rect x="3" y="4" width="14" height="12" rx="2" stroke="currentColor" strokeWidth="1.5" />
@@ -18,11 +12,26 @@ const ICONS = [
   </svg>,
   <svg key="location" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
     <circle cx="10" cy="9" r="3" stroke="currentColor" strokeWidth="1.5" />
-    <path
-      d="M10 2C6.69 2 4 4.69 4 8C4 12.5 10 18 10 18C10 18 16 12.5 16 8C16 4.69 13.31 2 10 2Z"
-      stroke="currentColor"
-      strokeWidth="1.5"
-    />
+    <path d="M10 2C6.69 2 4 4.69 4 8C4 12.5 10 18 10 18C10 18 16 12.5 16 8C16 4.69 13.31 2 10 2Z" stroke="currentColor" strokeWidth="1.5" />
+  </svg>,
+]
+
+const SOON_ICONS = [
+  <svg key="roaming" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+    <circle cx="10" cy="10" r="7" stroke="currentColor" strokeWidth="1.5" />
+    <path d="M10 3C10 3 13 6.5 13 10C13 13.5 10 17 10 17" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+    <path d="M10 3C10 3 7 6.5 7 10C7 13.5 10 17 10 17" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+    <path d="M3 10H17" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+  </svg>,
+  <svg key="kyc" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+    <rect x="3" y="5" width="14" height="10" rx="2" stroke="currentColor" strokeWidth="1.5" />
+    <circle cx="7.5" cy="10" r="2" stroke="currentColor" strokeWidth="1.5" />
+    <path d="M12 8H16M12 10H15M12 12H14" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" />
+  </svg>,
+  <svg key="silent-auth" width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+    <rect x="6" y="9" width="8" height="8" rx="1.5" stroke="currentColor" strokeWidth="1.5" />
+    <path d="M8 9V6.5C8 5.12 8.9 4 10 4C11.1 4 12 5.12 12 6.5V9" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+    <circle cx="10" cy="13" r="1" fill="currentColor" />
   </svg>,
 ]
 
@@ -49,107 +58,101 @@ export default function ApisSection({ dict }: { dict: Dict['apis'] }) {
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
             gap: 16,
-            marginBottom: 24,
+            marginBottom: 16,
           }}
         >
           {dict.liveApis.map((api, i) => (
-            <div
-              key={api.name}
-              className="card"
-              style={{ display: 'flex', flexDirection: 'column', gap: 16 }}
-            >
-              {/* Icon + status */}
+            <div key={api.name} className="card" style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
                 <div
                   style={{
-                    width: 40,
-                    height: 40,
-                    borderRadius: 8,
+                    width: 40, height: 40, borderRadius: 8,
                     background: 'rgba(45, 212, 160, 0.08)',
                     border: '1px solid rgba(45, 212, 160, 0.15)',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
                     color: 'var(--success)',
                   }}
                 >
-                  {ICONS[i]}
+                  {LIVE_ICONS[i]}
                 </div>
                 <span className="status-live">{dict.live}</span>
               </div>
-
-              {/* Title */}
-              <h3
-                style={{
-                  fontFamily: 'var(--font-display)',
-                  fontSize: 17,
-                  fontWeight: 600,
-                  color: 'var(--ink)',
-                  letterSpacing: '-0.02em',
-                }}
-              >
+              <h3 style={{ fontFamily: 'var(--font-display)', fontSize: 17, fontWeight: 600, color: 'var(--ink)', letterSpacing: '-0.02em' }}>
                 {api.name}
               </h3>
-
-              {/* Business value */}
-              <p className="t-body" style={{ color: 'var(--ink-mute)' }}>
-                {api.businessValue}
-              </p>
-
-              {/* How */}
-              <div
-                style={{
-                  padding: '12px',
-                  background: 'var(--bg)',
-                  border: '1px solid var(--border-subtle)',
-                  borderRadius: 8,
-                }}
-              >
-                <p className="t-small" style={{ color: 'var(--ink-dim)' }}>
-                  {api.how}
-                </p>
+              <p className="t-body" style={{ color: 'var(--ink-mute)' }}>{api.businessValue}</p>
+              <div style={{ padding: '12px', background: 'var(--bg)', border: '1px solid var(--border-subtle)', borderRadius: 8 }}>
+                <p className="t-small" style={{ color: 'var(--ink-dim)' }}>{api.how}</p>
               </div>
-
-              {/* Use cases */}
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
                 {api.useCases.map((uc) => (
-                  <span
-                    key={uc}
-                    style={{
-                      fontFamily: 'var(--font-mono)',
-                      fontSize: 11,
-                      color: 'var(--ink-dim)',
-                      background: 'var(--bg-elev-3)',
-                      border: '1px solid var(--border)',
-                      borderRadius: 4,
-                      padding: '3px 8px',
-                    }}
-                  >
+                  <span key={uc} style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--ink-dim)', background: 'var(--bg-elev-3)', border: '1px solid var(--border)', borderRadius: 4, padding: '3px 8px' }}>
                     {uc}
                   </span>
                 ))}
               </div>
-
-              {/* Endpoint */}
-              <div
-                style={{
-                  marginTop: 'auto',
-                  padding: '8px 12px',
-                  background: 'var(--bg)',
-                  border: '1px solid var(--border-subtle)',
-                  borderRadius: 6,
-                  fontFamily: 'var(--font-mono)',
-                  fontSize: 11,
-                  color: 'var(--ink-dim)',
-                }}
-              >
+              <div style={{ marginTop: 'auto', padding: '8px 12px', background: 'var(--bg)', border: '1px solid var(--border-subtle)', borderRadius: 6, fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--ink-dim)' }}>
                 POST {api.endpoint}
               </div>
             </div>
           ))}
         </div>
 
-        {/* Coming soon APIs */}
+        {/* Coming soon API cards */}
+        <div
+          style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
+            gap: 16,
+            marginBottom: 24,
+            opacity: 0.72,
+          }}
+        >
+          {dict.comingSoonApis.map((api, i) => (
+            <div
+              key={api.name}
+              className="card"
+              style={{
+                display: 'flex', flexDirection: 'column', gap: 16,
+                borderStyle: 'dashed',
+              }}
+            >
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+                <div
+                  style={{
+                    width: 40, height: 40, borderRadius: 8,
+                    background: 'rgba(108, 140, 255, 0.08)',
+                    border: '1px solid rgba(108, 140, 255, 0.15)',
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    color: 'var(--blue-500)',
+                  }}
+                >
+                  {SOON_ICONS[i]}
+                </div>
+                <span className="status-coming">{dict.comingSoon}</span>
+              </div>
+              <h3 style={{ fontFamily: 'var(--font-display)', fontSize: 17, fontWeight: 600, color: 'var(--ink)', letterSpacing: '-0.02em' }}>
+                {api.name}
+              </h3>
+              <p className="t-body" style={{ color: 'var(--ink-mute)' }}>{api.businessValue}</p>
+              <div style={{ padding: '12px', background: 'var(--bg)', border: '1px solid var(--border-subtle)', borderRadius: 8 }}>
+                <p className="t-small" style={{ color: 'var(--ink-dim)' }}>{api.how}</p>
+              </div>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
+                {api.useCases.map((uc) => (
+                  <span key={uc} style={{ fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--ink-dim)', background: 'var(--bg-elev-3)', border: '1px solid var(--border)', borderRadius: 4, padding: '3px 8px' }}>
+                    {uc}
+                  </span>
+                ))}
+              </div>
+              <div style={{ marginTop: 'auto', padding: '8px 12px', background: 'var(--bg)', border: '1px solid var(--border-subtle)', borderRadius: 6, fontFamily: 'var(--font-mono)', fontSize: 11, color: 'var(--ink-faint)' }}>
+                POST {api.endpoint}
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Simple coming soon badges */}
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, alignItems: 'center' }}>
           <span className="t-label" style={{ color: 'var(--ink-faint)', marginRight: 4 }}>
             {dict.comingSoon}
@@ -158,9 +161,7 @@ export default function ApisSection({ dict }: { dict: Dict['apis'] }) {
             <div
               key={name}
               style={{
-                display: 'inline-flex',
-                alignItems: 'center',
-                gap: 8,
+                display: 'inline-flex', alignItems: 'center', gap: 8,
                 padding: '6px 12px',
                 background: 'var(--bg-elev-1)',
                 border: '1px solid var(--border-subtle)',
@@ -168,9 +169,7 @@ export default function ApisSection({ dict }: { dict: Dict['apis'] }) {
                 opacity: 0.65,
               }}
             >
-              <span className="t-small" style={{ color: 'var(--ink-dim)' }}>
-                {name}
-              </span>
+              <span className="t-small" style={{ color: 'var(--ink-dim)' }}>{name}</span>
               <span className="status-coming">{dict.comingSoon}</span>
             </div>
           ))}

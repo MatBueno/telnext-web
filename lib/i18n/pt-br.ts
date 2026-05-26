@@ -63,7 +63,30 @@ const ptBr: Dict = {
         endpoint: '/v1/location/verify',
       },
     ],
-    comingApis: ['Qualidade sob Demanda', 'Status do Dispositivo', 'OTP via Rede', 'Cobrança pela Operadora', 'Status de Roaming', 'Verificação KYC', 'Autenticação Silenciosa'],
+    comingSoonApis: [
+      {
+        name: 'Status de Roaming',
+        businessValue: 'Sinaliza viagens impossíveis e fraudes internacionais antes da transação ser aprovada.',
+        how: 'Retorna se o dispositivo está em roaming e em qual país — usando dados reais de rede, sem GPS.',
+        useCases: ['Viagem impossível', 'fraude internacional', 'bloqueio por mercado de risco'],
+        endpoint: '/v1/roaming/status',
+      },
+      {
+        name: 'Verificação KYC',
+        businessValue: 'Verificação de identidade pela operadora — sem upload de documentos, sem filas de revisão manual.',
+        how: 'Compara nome e data de nascimento do assinante cadastrado na operadora com os dados fornecidos pelo usuário no onboarding.',
+        useCases: ['Abertura de conta', 'conformidade KYC', 'verificação adicional de identidade'],
+        endpoint: '/v1/kyc/match',
+      },
+      {
+        name: 'Autenticação Silenciosa',
+        businessValue: 'Autentica usuários em background — sem OTP, zero atrito para o usuário.',
+        how: 'Cria uma URL de desafio segura e verifica se o dispositivo responde pela sessão de dados correta da operadora — invisível para o usuário.',
+        useCases: ['Login passivo', 'continuidade de sessão', 'autenticação adicional'],
+        endpoint: '/v1/auth/silent',
+      },
+    ],
+    comingApis: ['Qualidade sob Demanda', 'Status do Dispositivo', 'OTP via Rede', 'Cobrança pela Operadora'],
   },
   infrastructure: {
     label: 'infraestrutura',

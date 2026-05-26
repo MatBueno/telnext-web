@@ -50,6 +50,7 @@ export type Dict = {
     live: string
     comingSoon: string
     liveApis: ApiEntry[]
+    comingSoonApis: ApiEntry[]
     comingApis: string[]
   }
   infrastructure: {
