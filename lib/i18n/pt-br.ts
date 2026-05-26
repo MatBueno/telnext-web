@@ -63,7 +63,7 @@ const ptBr: Dict = {
         endpoint: '/v1/location/verify',
       },
     ],
-    comingApis: ['Qualidade sob Demanda', 'Status do Dispositivo', 'OTP via Rede', 'Cobrança pela Operadora'],
+    comingApis: ['Qualidade sob Demanda', 'Status do Dispositivo', 'OTP via Rede', 'Cobrança pela Operadora', 'Status de Roaming', 'Verificação KYC', 'Autenticação Silenciosa'],
   },
   infrastructure: {
     label: 'infraestrutura',

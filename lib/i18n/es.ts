@@ -63,7 +63,7 @@ const es: Dict = {
         endpoint: '/v1/location/verify',
       },
     ],
-    comingApis: ['Calidad bajo Demanda', 'Estado del Dispositivo', 'OTP por Red', 'Facturación por Operadora'],
+    comingApis: ['Calidad bajo Demanda', 'Estado del Dispositivo', 'OTP por Red', 'Facturación por Operadora', 'Estado de Roaming', 'Verificación KYC', 'Autenticación Silenciosa'],
   },
   infrastructure: {
     label: 'infraestructura',

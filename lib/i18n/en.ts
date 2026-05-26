@@ -63,7 +63,7 @@ const en: Dict = {
         endpoint: '/v1/location/verify',
       },
     ],
-    comingApis: ['Quality on Demand', 'Device Status', 'Network-based OTP', 'Carrier Billing'],
+    comingApis: ['Quality on Demand', 'Device Status', 'Network-based OTP', 'Carrier Billing', 'Roaming Status', 'KYC Match', 'Silent Authentication'],
   },
   infrastructure: {
     label: 'infrastructure',
