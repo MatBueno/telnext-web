@@ -1,13 +1,18 @@
 import type { Metadata } from 'next'
+import { getDictionary, isValidLocale, type Locale } from '@/lib/i18n'
+import { notFound } from 'next/navigation'
 import Nav from '@/components/nav'
 import Footer from '@/components/footer'
-import { getDictionary } from '@/lib/i18n'
 
-const dict = getDictionary('en')
+export async function generateMetadata({ params }: { params: { lang: string } }): Promise<Metadata> {
+  return {
+    title: 'Docs — Telnext',
+    description: 'Telnext developer documentation. Quickstart, API reference, SDKs and error codes.',
+  }
+}
 
-export const metadata: Metadata = {
-  title: 'Docs — Telnext',
-  description: 'Telnext developer documentation. Quickstart, API reference, SDKs and error codes.',
+export function generateStaticParams() {
+  return [{ lang: 'en' }, { lang: 'pt-br' }, { lang: 'es' }]
 }
 
 const NAV_ITEMS = [
@@ -43,10 +48,13 @@ const ERROR_EXAMPLE = `{
   "timestamp": "2026-05-25T14:02:11Z"
 }`
 
-export default function DocsPage() {
+export default function DocsPage({ params }: { params: { lang: string } }) {
+  if (!isValidLocale(params.lang)) notFound()
+  const dict = getDictionary(params.lang as Locale)
+
   return (
     <>
-      <Nav dict={dict.nav} lang="en" />
+      <Nav dict={dict.nav} lang={params.lang} />
       <div
         style={{
           paddingTop: 64,
@@ -243,7 +251,7 @@ console.log(result.verificationResult)
               <p className="t-small" style={{ color: 'var(--ink-dim)' }}>
                 Full API reference, webhook docs, and SDK guides are in progress.
                 Join the{' '}
-                <a href="/#waitlist" style={{ color: 'var(--blue-300)', textDecoration: 'none' }}>
+                <a href={`/${params.lang}#waitlist`} style={{ color: 'var(--blue-300)', textDecoration: 'none' }}>
                   early access list
                 </a>{' '}
                 to get notified when they go live.
@@ -252,7 +260,7 @@ console.log(result.verificationResult)
           </div>
         </main>
       </div>
-      <Footer dict={dict.footer} lang="en" />
+      <Footer dict={dict.footer} lang={params.lang} />
     </>
   )
 }

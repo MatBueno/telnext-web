@@ -4,7 +4,7 @@ import { useState } from 'react'
 
 type Tab = 'typescript' | 'python' | 'curl'
 
-function CopyButton({ text }: { text: string }) {
+function CopyButton({ text, copyLabel, copiedLabel }: { text: string; copyLabel: string; copiedLabel: string }) {
   const [copied, setCopied] = useState(false)
 
   const copy = async () => {
@@ -28,7 +28,7 @@ function CopyButton({ text }: { text: string }) {
         transition: 'all 0.15s',
       }}
     >
-      {copied ? 'copied!' : 'copy'}
+      {copied ? copiedLabel : copyLabel}
     </button>
   )
 }
@@ -177,7 +177,7 @@ const TABS: { id: Tab; label: string; code: string }[] = [
   { id: 'curl', label: 'cURL', code: CURL_CODE },
 ]
 
-export default function CodeWindow() {
+export default function CodeWindow({ dict }: { dict: { copy: string; copied: string } }) {
   const [active, setActive] = useState<Tab>('typescript')
   const activeTab = TABS.find((t) => t.id === active)!
 
@@ -245,7 +245,7 @@ export default function CodeWindow() {
                 ))}
               </div>
 
-              <CopyButton text={activeTab.code} />
+              <CopyButton text={activeTab.code} copyLabel={dict.copy} copiedLabel={dict.copied} />
             </div>
 
             {/* Code content */}

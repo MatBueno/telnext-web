@@ -1,6 +1,8 @@
-import { STATS } from '@/lib/constants'
+import type { Dict } from '@/lib/i18n'
 
-export default function Hero() {
+type HeroDict = Dict['hero']
+
+export default function Hero({ dict, lang }: { dict: HeroDict; lang: string }) {
   return (
     <section
       style={{
@@ -50,13 +52,13 @@ export default function Hero() {
           <div style={{ marginBottom: 32 }}>
             <span className="badge">
               <span className="badge-dot" />
-              Now available for banks and fintechs in LATAM
+              {dict.badge}
             </span>
           </div>
 
           {/* Headline */}
           <h1 className="t-display" style={{ color: 'var(--ink)', marginBottom: 8 }}>
-            Silent security
+            {dict.headline1}
           </h1>
           <h1
             className="t-display"
@@ -69,7 +71,7 @@ export default function Hero() {
               marginBottom: 24,
             }}
           >
-            for financial services.
+            {dict.headline2}
           </h1>
 
           {/* Lead */}
@@ -77,20 +79,19 @@ export default function Hero() {
             className="t-lead"
             style={{ color: 'var(--ink-mute)', marginBottom: 12, fontWeight: 600, fontSize: 22 }}
           >
-            No telco contracts. No friction. No OTP.
+            {dict.sub}
           </p>
           <p className="t-body" style={{ color: 'var(--ink-dim)', maxWidth: 560, marginBottom: 40 }}>
-            Telnext gives banks and fintechs real-time identity verification
-            using carrier network data — the strongest signal available.
+            {dict.body}
           </p>
 
           {/* CTAs */}
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12, marginBottom: 64 }}>
-            <a href="/#waitlist" className="btn btn-primary btn-lg">
-              start for free
+            <a href="#waitlist" className="btn btn-primary btn-lg">
+              {dict.ctaPrimary}
             </a>
-            <a href="/docs" className="btn btn-ghost btn-lg">
-              view docs
+            <a href={`/${lang}/docs`} className="btn btn-ghost btn-lg">
+              {dict.ctaSecondary}
             </a>
           </div>
 
@@ -104,7 +105,7 @@ export default function Hero() {
               borderTop: '1px solid var(--border-subtle)',
             }}
           >
-            {STATS.map((stat) => (
+            {dict.stats.map((stat) => (
               <div key={stat.label} style={{ display: 'flex', alignItems: 'baseline', gap: 8 }}>
                 <span
                   style={{

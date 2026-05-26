@@ -1,22 +1,30 @@
 import type { Metadata } from 'next'
+import { getDictionary, isValidLocale, type Locale } from '@/lib/i18n'
+import { notFound } from 'next/navigation'
 import Nav from '@/components/nav'
 import PricingSection from '@/components/pricing-section'
 import Waitlist from '@/components/waitlist'
 import Footer from '@/components/footer'
-import { getDictionary } from '@/lib/i18n'
 
-const dict = getDictionary('en')
-
-export const metadata: Metadata = {
-  title: 'Pricing — Telnext',
-  description:
-    'Simple, transparent pricing. Start free in sandbox. Pay $0.004 per API call in production. Volume discounts for 1M+ calls.',
+export async function generateMetadata({ params }: { params: { lang: string } }): Promise<Metadata> {
+  return {
+    title: 'Pricing — Telnext',
+    description:
+      'Simple, transparent pricing. Start free in sandbox. Pay $0.004 per API call in production. Volume discounts for 1M+ calls.',
+  }
 }
 
-export default function PricingPage() {
+export function generateStaticParams() {
+  return [{ lang: 'en' }, { lang: 'pt-br' }, { lang: 'es' }]
+}
+
+export default function PricingPage({ params }: { params: { lang: string } }) {
+  if (!isValidLocale(params.lang)) notFound()
+  const dict = getDictionary(params.lang as Locale)
+
   return (
     <>
-      <Nav dict={dict.nav} lang="en" />
+      <Nav dict={dict.nav} lang={params.lang} />
       <main style={{ paddingTop: 64 }}>
         {/* Page hero */}
         <div
@@ -28,10 +36,10 @@ export default function PricingPage() {
         >
           <div className="container">
             <p className="t-label" style={{ color: 'var(--blue-500)', marginBottom: 12 }}>
-              pricing
+              {dict.pricing.label}
             </p>
             <h1 className="t-h1" style={{ color: 'var(--ink)', marginBottom: 12 }}>
-              Simple, transparent pricing
+              {dict.pricing.title}
             </h1>
             <p className="t-lead" style={{ color: 'var(--ink-dim)', maxWidth: 480, margin: '0 auto' }}>
               No monthly minimums. No setup fees. Pay only for what you use in
@@ -107,7 +115,7 @@ export default function PricingPage() {
 
         <Waitlist dict={dict.waitlist} />
       </main>
-      <Footer dict={dict.footer} lang="en" />
+      <Footer dict={dict.footer} lang={params.lang} />
     </>
   )
 }

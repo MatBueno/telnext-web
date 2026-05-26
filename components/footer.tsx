@@ -1,9 +1,11 @@
-export default function Footer() {
+import type { Dict } from '@/lib/i18n'
+
+export default function Footer({ dict, lang }: { dict: Dict['footer']; lang: string }) {
   const links = [
-    { label: 'docs', href: '/docs' },
+    { label: 'docs', href: `/${lang}/docs` },
     { label: 'status', href: 'https://status.telnext.dev' },
     { label: 'github', href: 'https://github.com/telnext' },
-    { label: 'privacy', href: '/privacy' },
+    { label: 'privacy', href: `/${lang}/privacy` },
   ]
 
   return (
@@ -26,7 +28,7 @@ export default function Footer() {
         {/* Brand + copyright */}
         <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
           <a
-            href="/"
+            href={`/${lang}`}
             aria-label="Telnext"
             style={{ display: 'inline-flex', alignItems: 'center', gap: 10, textDecoration: 'none' }}
           >
@@ -69,7 +71,7 @@ export default function Footer() {
             |
           </span>
           <p className="t-small" style={{ color: 'var(--ink-faint)' }}>
-            © 2025 telnext.dev — Silent security for financial services
+            {dict.copyright}
           </p>
         </div>
 

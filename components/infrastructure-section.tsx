@@ -1,52 +1,25 @@
-const BADGES = [
-  'Gartner Magic Quadrant leaders in CPaaS',
-  'GSMA Open Gateway certified',
-  'CAMARA API compliant',
-  'LATAM coverage: BR · MX · AR',
-  'Automatic failover',
-]
+import type { Dict } from '@/lib/i18n'
 
-const COMPLIANCE = [
-  {
-    title: 'LGPD compliant',
-    body: 'All carrier data access follows Brazilian data protection law.',
-  },
-  {
-    title: 'No data retention',
-    body: 'Telnext does not store phone numbers or location data. Query in, result out.',
-  },
-  {
-    title: 'Audit trail',
-    body: 'Every API call logged with trace_id and timestamp. Exportable for compliance review.',
-  },
-  {
-    title: 'Sandbox isolation',
-    body: 'Test environment fully isolated from production.',
-  },
-]
-
-export default function InfrastructureSection() {
+export default function InfrastructureSection({ dict }: { dict: Dict['infrastructure'] }) {
   return (
     <section className="section" id="infrastructure">
       <div className="container">
         {/* Header */}
         <div style={{ marginBottom: 48 }}>
           <p className="t-label" style={{ color: 'var(--blue-500)', marginBottom: 12 }}>
-            infrastructure
+            {dict.label}
           </p>
           <h2 className="t-h2" style={{ color: 'var(--ink)', marginBottom: 12 }}>
-            Built on carriers that pass your security review.
+            {dict.title}
           </h2>
           <p className="t-body" style={{ color: 'var(--ink-dim)', maxWidth: 560 }}>
-            Telnext routes every API call through a curated network of tier-1
-            global carriers and CPaaS providers — selected for reliability,
-            compliance and regulatory standing.
+            {dict.body}
           </p>
         </div>
 
         {/* Certification badges */}
         <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10, marginBottom: 48 }}>
-          {BADGES.map((badge) => (
+          {dict.badges.map((badge) => (
             <div
               key={badge}
               style={{
@@ -90,7 +63,7 @@ export default function InfrastructureSection() {
             gap: 16,
           }}
         >
-          {COMPLIANCE.map((item) => (
+          {dict.compliance.map((item) => (
             <div
               key={item.title}
               className="card"

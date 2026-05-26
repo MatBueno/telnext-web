@@ -1,17 +1,22 @@
 import type { Metadata } from 'next'
+import { getDictionary, isValidLocale, type Locale } from '@/lib/i18n'
+import { notFound } from 'next/navigation'
 import Nav from '@/components/nav'
 import CoverageMap from '@/components/coverage-map'
 import Waitlist from '@/components/waitlist'
 import Footer from '@/components/footer'
 import { COVERAGE, APIS } from '@/lib/constants'
-import { getDictionary } from '@/lib/i18n'
 
-const dict = getDictionary('en')
+export async function generateMetadata({ params }: { params: { lang: string } }): Promise<Metadata> {
+  return {
+    title: 'Coverage — Telnext',
+    description:
+      'Real-time carrier availability by country and API. See where Telnext routes and which carriers are supported.',
+  }
+}
 
-export const metadata: Metadata = {
-  title: 'Coverage — Telnext',
-  description:
-    'Real-time carrier availability by country and API. See where Telnext routes and which carriers are supported.',
+export function generateStaticParams() {
+  return [{ lang: 'en' }, { lang: 'pt-br' }, { lang: 'es' }]
 }
 
 const COVERAGE_DETAIL = [
@@ -46,10 +51,13 @@ const COVERAGE_DETAIL = [
   },
 ]
 
-export default function CoveragePage() {
+export default function CoveragePage({ params }: { params: { lang: string } }) {
+  if (!isValidLocale(params.lang)) notFound()
+  const dict = getDictionary(params.lang as Locale)
+
   return (
     <>
-      <Nav dict={dict.nav} lang="en" />
+      <Nav dict={dict.nav} lang={params.lang} />
       <main style={{ paddingTop: 64 }}>
         {/* Hero */}
         <div style={{ padding: '80px 0 40px', borderBottom: '1px solid var(--border-subtle)' }}>
@@ -205,7 +213,7 @@ export default function CoveragePage() {
 
         <Waitlist dict={dict.waitlist} />
       </main>
-      <Footer dict={dict.footer} lang="en" />
+      <Footer dict={dict.footer} lang={params.lang} />
     </>
   )
 }

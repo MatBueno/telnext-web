@@ -18,18 +18,18 @@ const es: Dict = {
     stats: [
       { value: '3', label: 'APIs de seguridad' },
       { value: '<200ms', label: 'verificación' },
-      { value: 'tier-1', label: 'operadoras globales' },
+      { value: 'tier-1', label: 'socios CPaaS' },
       { value: '99.9%', label: 'uptime SLA' },
     ],
   },
   howItWorks: {
     label: 'cómo funciona',
     title: 'Verificación silenciosa, en cada solicitud',
-    body: 'Cada vez que un usuario inicia sesión o realiza una transacción, Telnext verifica la identidad silenciosamente a nivel de operadora — en menos de 200ms, sin ninguna fricción para el usuario.',
+    body: 'Cada solicitud pasa por proveedores CPaaS líderes en el Gartner MQ con acceso directo a operadoras tier-1 — enrutado automáticamente por Telnext en menos de 200ms, sin fricción para el usuario.',
     nodes: [
       { label: 'Tu App', sub: 'inicio de sesión o transacción' },
-      { label: 'API Telnext', sub: 'endpoint único' },
-      { label: 'Operadoras Tier-1', sub: 'red de operadora' },
+      { label: 'API Telnext', sub: 'endpoint único', highlight: true },
+      { label: 'CPaaS Tier-1', sub: 'Sinch · Twilio · Infobip', highlight: true, multi: true },
       { label: 'Respuesta Verificada', sub: 'en menos de 200ms' },
     ],
     footerNote: 'Failover automático — cero configuración requerida',
@@ -67,8 +67,8 @@ const es: Dict = {
   },
   infrastructure: {
     label: 'infraestructura',
-    title: 'Construido sobre operadoras que pasan tu revisión de seguridad.',
-    body: 'Telnext enruta cada llamada de API a través de una red seleccionada de operadoras tier-1 y proveedores CPaaS globales — seleccionados por confiabilidad, cumplimiento y regulación.',
+    title: 'Construido sobre proveedores que tu equipo de seguridad ya conoce.',
+    body: 'Telnext enruta cada llamada de API a través de líderes del Cuadrante Mágico de Gartner en CPaaS — Sinch, Twilio, Infobip y pares — cada uno con relaciones directas con operadoras tier-1, cumplimiento regional y uptime comprobado. Obtienes señales de identidad de nivel operadora sin gestionar un solo contrato con operadora.',
     badges: [
       'Líderes en el Cuadrante Mágico de Gartner en CPaaS',
       'Certificado GSMA Open Gateway',
@@ -124,11 +124,11 @@ const es: Dict = {
   waitlist: {
     label: 'acceso anticipado',
     title: 'Únete a la lista de acceso anticipado',
-    body: 'Diseñado para bancos y fintechs en LATAM.\nSé el primero cuando las operadoras tier-1 estén disponibles.',
+    body: 'Diseñado para bancos y fintechs en LATAM.\nSé el primero cuando la red esté disponible en tu mercado.',
     placeholder: 'tu@empresa.com',
     cta: 'obtener acceso anticipado',
     loading: 'uniéndose…',
-    success: 'Estás en la lista. Te contactaremos cuando las operadoras tier-1 estén disponibles.',
+    success: 'Estás en la lista. Te contactaremos cuando la cobertura esté disponible en tu mercado.',
     errorGeneric: 'Algo salió mal. Inténtalo de nuevo.',
     errorNetwork: 'Error de red. Inténtalo de nuevo.',
     footnote: 'Respetamos tu bandeja de entrada. Cancela la suscripción en cualquier momento.',

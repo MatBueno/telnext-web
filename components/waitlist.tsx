@@ -1,8 +1,9 @@
 'use client'
 
 import { useState } from 'react'
+import type { Dict } from '@/lib/i18n'
 
-export default function Waitlist() {
+export default function Waitlist({ dict }: { dict: Dict['waitlist'] }) {
   const [email, setEmail] = useState('')
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
   const [message, setMessage] = useState('')
@@ -22,15 +23,15 @@ export default function Waitlist() {
 
       if (res.ok) {
         setStatus('success')
-        setMessage("You're on the list. We'll reach out when tier-1 carriers go live.")
+        setMessage(dict.success)
         setEmail('')
       } else {
         setStatus('error')
-        setMessage(data.error || 'Something went wrong. Try again.')
+        setMessage(data.error || dict.errorGeneric)
       }
     } catch {
       setStatus('error')
-      setMessage('Network error. Please try again.')
+      setMessage(dict.errorNetwork)
     }
   }
 
@@ -53,15 +54,18 @@ export default function Waitlist() {
         >
           {/* Header */}
           <p className="t-label" style={{ color: 'var(--blue-500)', marginBottom: 16 }}>
-            early access
+            {dict.label}
           </p>
           <h2 className="t-h2" style={{ color: 'var(--ink)', marginBottom: 12 }}>
-            Join the early access list
+            {dict.title}
           </h2>
           <p className="t-body" style={{ color: 'var(--ink-dim)', marginBottom: 40 }}>
-            Built for banks and fintechs in LATAM.
-            <br />
-            Be first when tier-1 carriers go live.
+            {dict.body.split('\n').map((line, i, arr) => (
+              <span key={i}>
+                {line}
+                {i < arr.length - 1 && <br />}
+              </span>
+            ))}
           </p>
 
           {status === 'success' ? (
@@ -102,7 +106,7 @@ export default function Waitlist() {
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder="you@company.com"
+                  placeholder={dict.placeholder}
                   required
                   style={{
                     flex: '1 1 220px',
@@ -129,7 +133,7 @@ export default function Waitlist() {
                     opacity: status === 'loading' ? 0.7 : 1,
                   }}
                 >
-                  {status === 'loading' ? 'joining…' : 'get early access'}
+                  {status === 'loading' ? dict.loading : dict.cta}
                 </button>
               </div>
 
@@ -145,7 +149,7 @@ export default function Waitlist() {
           )}
 
           <p className="t-small" style={{ color: 'var(--ink-faint)', marginTop: 16 }}>
-            We respect your inbox. Unsubscribe any time.
+            {dict.footnote}
           </p>
         </div>
       </div>

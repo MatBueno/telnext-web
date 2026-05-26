@@ -1,9 +1,5 @@
-const FLOW_NODES = [
-  { label: 'Your App', sub: 'login or transaction' },
-  { label: 'Telnext API', sub: 'single endpoint', highlight: true },
-  { label: 'Tier-1 Carriers', sub: 'carrier network', highlight: true },
-  { label: 'Verified Response', sub: 'in under 200ms' },
-]
+import { Fragment } from 'react'
+import type { Dict } from '@/lib/i18n'
 
 function ArrowRight() {
   return (
@@ -117,22 +113,20 @@ function Node({
   )
 }
 
-export default function HowItWorks() {
+export default function HowItWorks({ dict }: { dict: Dict['howItWorks'] }) {
   return (
     <section className="section" style={{ background: 'var(--bg-elev-1)', borderTop: '1px solid var(--border-subtle)', borderBottom: '1px solid var(--border-subtle)' }}>
       <div className="container">
         {/* Header */}
         <div style={{ textAlign: 'center', marginBottom: 56 }}>
           <p className="t-label" style={{ color: 'var(--blue-500)', marginBottom: 12 }}>
-            how it works
+            {dict.label}
           </p>
           <h2 className="t-h2" style={{ color: 'var(--ink)', marginBottom: 16 }}>
-            Silent verification, every request
+            {dict.title}
           </h2>
           <p className="t-body" style={{ color: 'var(--ink-dim)', maxWidth: 540, margin: '0 auto' }}>
-            Every time a user logs in or initiates a transaction, Telnext
-            silently verifies identity at the carrier level — in under 200ms,
-            with no user friction.
+            {dict.body}
           </p>
         </div>
 
@@ -146,13 +140,17 @@ export default function HowItWorks() {
             gap: '16px 8px',
           }}
         >
-          <Node label="Your App" sub="login or transaction" />
-          <ArrowRight />
-          <Node label="Telnext API" sub="single endpoint" highlight />
-          <ArrowRight />
-          <Node label="Tier-1 Carriers" sub="carrier network" highlight />
-          <ArrowRight />
-          <Node label="Verified Response" sub="in under 200ms" />
+          {dict.nodes.map((node, i) => (
+            <Fragment key={node.label}>
+              <Node
+                label={node.label}
+                sub={node.sub}
+                highlight={node.highlight}
+                multi={node.multi}
+              />
+              {i < dict.nodes.length - 1 && <ArrowRight />}
+            </Fragment>
+          ))}
         </div>
 
         {/* Fallback note */}
@@ -182,7 +180,7 @@ export default function HowItWorks() {
             />
           </svg>
           <span className="t-label" style={{ color: 'var(--ink-dim)' }}>
-            Automatic failover — zero config required
+            {dict.footerNote}
           </span>
         </div>
       </div>

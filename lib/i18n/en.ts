@@ -18,18 +18,18 @@ const en: Dict = {
     stats: [
       { value: '3', label: 'security APIs' },
       { value: '<200ms', label: 'verification' },
-      { value: 'tier-1', label: 'global carriers' },
+      { value: 'tier-1', label: 'CPaaS partners' },
       { value: '99.9%', label: 'uptime SLA' },
     ],
   },
   howItWorks: {
     label: 'how it works',
     title: 'Silent verification, every request',
-    body: 'Every time a user logs in or initiates a transaction, Telnext silently verifies identity at the carrier level — in under 200ms, with no user friction.',
+    body: 'Every request runs through Gartner MQ-ranked CPaaS providers with direct tier-1 carrier access — routed automatically by Telnext in under 200ms, with no user friction.',
     nodes: [
       { label: 'Your App', sub: 'login or transaction' },
-      { label: 'Telnext API', sub: 'single endpoint' },
-      { label: 'Tier-1 Carriers', sub: 'carrier network' },
+      { label: 'Telnext API', sub: 'single endpoint', highlight: true },
+      { label: 'Tier-1 CPaaS', sub: 'Sinch · Twilio · Infobip', highlight: true, multi: true },
       { label: 'Verified Response', sub: 'in under 200ms' },
     ],
     footerNote: 'Automatic failover — zero config required',
@@ -67,8 +67,8 @@ const en: Dict = {
   },
   infrastructure: {
     label: 'infrastructure',
-    title: 'Built on carriers that pass your security review.',
-    body: 'Telnext routes every API call through a curated network of tier-1 global carriers and CPaaS providers — selected for reliability, compliance and regulatory standing.',
+    title: 'Built on providers your security team already trusts.',
+    body: 'Telnext routes every API call through Gartner Magic Quadrant CPaaS leaders — Sinch, Twilio, Infobip and peers — each with established tier-1 carrier relationships, regional compliance and proven uptime. You get carrier-grade identity signals without managing a single carrier contract.',
     badges: [
       'Gartner Magic Quadrant leaders in CPaaS',
       'GSMA Open Gateway certified',
@@ -124,11 +124,11 @@ const en: Dict = {
   waitlist: {
     label: 'early access',
     title: 'Join the early access list',
-    body: 'Built for banks and fintechs in LATAM.\nBe first when tier-1 carriers go live.',
+    body: 'Built for banks and fintechs in LATAM.\nBe first when the network goes live in your market.',
     placeholder: 'you@company.com',
     cta: 'get early access',
     loading: 'joining…',
-    success: "You're on the list. We'll reach out when tier-1 carriers go live.",
+    success: "You're on the list. We'll reach out when coverage is live in your market.",
     errorGeneric: 'Something went wrong. Try again.',
     errorNetwork: 'Network error. Please try again.',
     footnote: 'We respect your inbox. Unsubscribe any time.',

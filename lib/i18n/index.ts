@@ -40,7 +40,7 @@ export type Dict = {
     label: string
     title: string
     body: string
-    nodes: { label: string; sub: string }[]
+    nodes: { label: string; sub: string; highlight?: boolean; multi?: boolean }[]
     footerNote: string
   }
   apis: {

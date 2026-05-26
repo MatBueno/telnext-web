@@ -1,80 +1,19 @@
-import Link from 'next/link'
+import type { Dict } from '@/lib/i18n'
 
-type Plan = {
-  name: string
-  price: string
-  unit: string
-  description: string
-  features: string[]
-  cta: string
-  ctaHref: string
-  featured?: boolean
-  note?: string
-}
-
-const PLANS: Plan[] = [
-  {
-    name: 'Sandbox',
-    price: 'free',
-    unit: 'forever',
-    description: 'No credit card needed. Start building immediately.',
-    features: [
-      'All APIs with mock responses',
-      '1,000 calls / month',
-      'Full docs access',
-      'No live carrier data',
-    ],
-    cta: 'start free',
-    ctaHref: '/#waitlist',
-    note: 'no card needed',
-  },
-  {
-    name: 'Pay as you go',
-    price: '$0.004',
-    unit: 'per API call',
-    description: 'Billed monthly. Full access to live carrier data.',
-    features: [
-      'All live APIs',
-      'Real carrier data',
-      'Cost preview per call',
-      'Usage dashboard',
-      'Cost preview before every API call. No surprises.',
-    ],
-    cta: 'get api key',
-    ctaHref: '/#waitlist',
-    featured: true,
-    note: 'billed monthly',
-  },
-  {
-    name: 'Volume',
-    price: 'custom',
-    unit: '1M+ calls / month',
-    description: 'Discounted rates, SLA guarantees, and dedicated support.',
-    features: [
-      'Discounted rates',
-      'SLA guarantee',
-      'Dedicated support',
-      'Zapier · Salesforce connectors',
-    ],
-    cta: 'talk to us',
-    ctaHref: 'mailto:hello@telnext.dev',
-  },
-]
-
-export default function PricingSection() {
+export default function PricingSection({ dict }: { dict: Dict['pricing'] }) {
   return (
     <section className="section" id="pricing">
       <div className="container">
         {/* Header */}
         <div style={{ textAlign: 'center', marginBottom: 56 }}>
           <p className="t-label" style={{ color: 'var(--blue-500)', marginBottom: 12 }}>
-            pricing
+            {dict.label}
           </p>
           <h2 className="t-h2" style={{ color: 'var(--ink)', marginBottom: 12 }}>
-            Simple, transparent pricing
+            {dict.title}
           </h2>
           <p className="t-body" style={{ color: 'var(--ink-dim)' }}>
-            Start free. Pay for what you use. Scale without surprises.
+            {dict.body}
           </p>
         </div>
 
@@ -87,7 +26,7 @@ export default function PricingSection() {
             alignItems: 'start',
           }}
         >
-          {PLANS.map((plan) => (
+          {dict.plans.map((plan) => (
             <div
               key={plan.name}
               style={{
@@ -120,7 +59,7 @@ export default function PricingSection() {
                     whiteSpace: 'nowrap',
                   }}
                 >
-                  most popular
+                  {dict.popular}
                 </div>
               )}
 
@@ -183,7 +122,7 @@ export default function PricingSection() {
                     >
                       <path
                         d="M2.5 7L5.5 10L11.5 4"
-                        stroke={plan.featured ? 'var(--blue-400)' : 'var(--success)'}
+                        stroke={plan.featured ? 'var(--blue-500)' : 'var(--success)'}
                         strokeWidth="1.5"
                         strokeLinecap="round"
                         strokeLinejoin="round"
