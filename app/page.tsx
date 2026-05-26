@@ -5,6 +5,7 @@ import HowItWorks from '@/components/how-it-works'
 import ApisSection from '@/components/apis-section'
 import CoverageMap from '@/components/coverage-map'
 import SandboxWidget from '@/components/sandbox-widget'
+import InfrastructureSection from '@/components/infrastructure-section'
 import PricingSection from '@/components/pricing-section'
 import Waitlist from '@/components/waitlist'
 import Footer from '@/components/footer'
@@ -22,6 +23,7 @@ export default function Home() {
         <CoverageMap />
         <SandboxWidget />
         <OnboardingSteps />
+        <InfrastructureSection />
         <PricingSection />
         <Waitlist />
       </main>

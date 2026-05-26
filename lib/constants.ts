@@ -82,10 +82,10 @@ export const COVERAGE = [
 ] as const
 
 export const STATS = [
-  { value: '3', label: 'providers' },
-  { value: '4', label: 'APIs' },
-  { value: '<50ms', label: 'p95' },
-  { value: '99.9%', label: 'uptime' },
+  { value: '3', label: 'security APIs' },
+  { value: '<200ms', label: 'verification' },
+  { value: 'tier-1', label: 'global carriers' },
+  { value: '99.9%', label: 'uptime SLA' },
 ] as const
 
 export const STEPS = [

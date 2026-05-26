@@ -39,39 +39,34 @@ const client = new Telnext({
   apiKey: process.env.TELNEXT_API_KEY
 })
 
-const result = await client.location.verify({
+// detect SIM swap before authorizing transaction
+const risk = await client.simSwap.check({
   phoneNumber: '+5511999990000',
-  latitude: -23.5505,
-  longitude: -46.6333,
-  radius: 300,
 })
 
-console.log(result.verificationResult)
-// → { withinRadius: true, carrier: 'Vivo', confidence: 0.97 }`
+if (risk.swappedInLast24h) {
+  blockTransaction()
+}
+
+// → { swapped: true, hoursAgo: 3, carrier: 'Vivo' }`
 
 const PY_CODE = `from telnext import Telnext
 
 client = Telnext(api_key=os.environ["TELNEXT_API_KEY"])
 
-result = client.location.verify(
-    phone_number="+5511999990000",
-    latitude=-23.5505,
-    longitude=-46.6333,
-    radius=300
+risk = client.sim_swap.check(
+    phone_number="+5511999990000"
 )
 
-print(result.verification_result)
-# → { within_radius: True, carrier: 'Vivo', confidence: 0.97 }`
+if risk.swapped_in_last_24h:
+    block_transaction()
 
-const CURL_CODE = `curl -X POST https://api.telnext.dev/v1/location/verify \\
+# → { swapped: True, hours_ago: 3, carrier: 'Vivo' }`
+
+const CURL_CODE = `curl -X POST https://api.telnext.dev/v1/sim-swap/check \\
   -H "Authorization: Bearer $TELNEXT_API_KEY" \\
   -H "Content-Type: application/json" \\
-  -d '{
-    "phoneNumber": "+5511999990000",
-    "latitude": -23.5505,
-    "longitude": -46.6333,
-    "radius": 300
-  }'`
+  -d '{ "phoneNumber": "+5511999990000" }'`
 
 function TSCode() {
   return (
@@ -96,35 +91,30 @@ function TSCode() {
       <span className="syn-prop">TELNEXT_API_KEY</span>
       {'\n'}
       {'})\n\n'}
+      <span className="syn-comment">{'// detect SIM swap before authorizing transaction'}</span>
+      {'\n'}
       <span className="syn-keyword">const</span>
-      {' result = '}
+      {' risk = '}
       <span className="syn-keyword">await</span>
       {' client.'}
-      <span className="syn-prop">location</span>
+      <span className="syn-prop">simSwap</span>
       {'.'}
-      <span className="syn-fn">verify</span>
+      <span className="syn-fn">check</span>
       {'({\n'}
       {'  phoneNumber: '}
       <span className="syn-string">&apos;+5511999990000&apos;</span>
       {',\n'}
-      {'  latitude: '}
-      <span className="syn-number">-23.5505</span>
-      {',\n'}
-      {'  longitude: '}
-      <span className="syn-number">-46.6333</span>
-      {',\n'}
-      {'  radius: '}
-      <span className="syn-number">300</span>
-      {',\n'}
       {'})\n\n'}
-      <span className="syn-prop">console</span>
-      {'.'}
-      <span className="syn-fn">log</span>
-      {'(result.'}
-      <span className="syn-prop">verificationResult</span>
-      {')\n'}
+      <span className="syn-keyword">if</span>
+      {' (risk.'}
+      <span className="syn-prop">swappedInLast24h</span>
+      {') {\n'}
+      {'  '}
+      <span className="syn-fn">blockTransaction</span>
+      {'()\n'}
+      {'}\n\n'}
       <span className="syn-comment">
-        {'// → { withinRadius: true, carrier: \'Vivo\', confidence: 0.97 }'}
+        {"// → { swapped: true, hoursAgo: 3, carrier: 'Vivo' }"}
       </span>
     </pre>
   )
@@ -142,25 +132,19 @@ function PyCode() {
       {'(api_key=os.environ['}
       <span className="syn-string">&quot;TELNEXT_API_KEY&quot;</span>
       {'])\n\n'}
-      {'result = client.location.'}
-      <span className="syn-fn">verify</span>
+      {'risk = client.sim_swap.'}
+      <span className="syn-fn">check</span>
       {'(\n'}
       {'    phone_number='}
       <span className="syn-string">&quot;+5511999990000&quot;</span>
-      {',\n'}
-      {'    latitude='}
-      <span className="syn-number">-23.5505</span>
-      {',\n'}
-      {'    longitude='}
-      <span className="syn-number">-46.6333</span>
-      {',\n'}
-      {'    radius='}
-      <span className="syn-number">300</span>
       {'\n)\n\n'}
-      <span className="syn-fn">print</span>
-      {'(result.verification_result)\n'}
+      <span className="syn-keyword">if</span>
+      {' risk.swapped_in_last_24h:\n'}
+      {'    '}
+      <span className="syn-fn">block_transaction</span>
+      {'()\n\n'}
       <span className="syn-comment">
-        {"# → { within_radius: True, carrier: 'Vivo', confidence: 0.97 }"}
+        {"# → { swapped: True, hours_ago: 3, carrier: 'Vivo' }"}
       </span>
     </pre>
   )
@@ -170,7 +154,7 @@ function CurlCode() {
   return (
     <pre className="t-code" style={{ color: 'var(--ink-mute)' }}>
       {'curl -X POST '}
-      <span className="syn-string">https://api.telnext.dev/v1/location/verify</span>
+      <span className="syn-string">https://api.telnext.dev/v1/sim-swap/check</span>
       {' \\\n'}
       {'  -H '}
       <span className="syn-string">&quot;Authorization: Bearer $TELNEXT_API_KEY&quot;</span>
@@ -178,27 +162,11 @@ function CurlCode() {
       {'  -H '}
       <span className="syn-string">&quot;Content-Type: application/json&quot;</span>
       {' \\\n'}
-      {"  -d '{\n"}
-      {'    '}
+      {"  -d '{ "}
       <span className="syn-key">&quot;phoneNumber&quot;</span>
       {': '}
       <span className="syn-string">&quot;+5511999990000&quot;</span>
-      {',\n'}
-      {'    '}
-      <span className="syn-key">&quot;latitude&quot;</span>
-      {': '}
-      <span className="syn-number">-23.5505</span>
-      {',\n'}
-      {'    '}
-      <span className="syn-key">&quot;longitude&quot;</span>
-      {': '}
-      <span className="syn-number">-46.6333</span>
-      {',\n'}
-      {'    '}
-      <span className="syn-key">&quot;radius&quot;</span>
-      {': '}
-      <span className="syn-number">300</span>
-      {"\n  }'"}
+      {" }'"}
     </pre>
   )
 }

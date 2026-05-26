@@ -38,6 +38,7 @@ const PLANS: Plan[] = [
       'Real carrier data',
       'Cost preview per call',
       'Usage dashboard',
+      'Cost preview before every API call. No surprises.',
     ],
     cta: 'get api key',
     ctaHref: '/#waitlist',

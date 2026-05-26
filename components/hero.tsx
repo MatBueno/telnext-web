@@ -50,13 +50,13 @@ export default function Hero() {
           <div style={{ marginBottom: 32 }}>
             <span className="badge">
               <span className="badge-dot" />
-              CAMARA Open Gateway — now available for developers
+              Now available for banks and fintechs in LATAM
             </span>
           </div>
 
           {/* Headline */}
           <h1 className="t-display" style={{ color: 'var(--ink)', marginBottom: 8 }}>
-            One API.
+            Silent security
           </h1>
           <h1
             className="t-display"
@@ -69,7 +69,7 @@ export default function Hero() {
               marginBottom: 24,
             }}
           >
-            Every network.
+            for financial services.
           </h1>
 
           {/* Lead */}
@@ -77,12 +77,11 @@ export default function Hero() {
             className="t-lead"
             style={{ color: 'var(--ink-mute)', marginBottom: 12, fontWeight: 600, fontSize: 22 }}
           >
-            No telco contracts.
+            No telco contracts. No friction. No OTP.
           </p>
           <p className="t-body" style={{ color: 'var(--ink-dim)', maxWidth: 560, marginBottom: 40 }}>
-            One API key. Access to device location, number verification and SIM
-            swap — across Sinch, Twilio and Infobip. Automatic routing.
-            Sandbox-ready. Production-grade.
+            Telnext gives banks and fintechs real-time identity verification
+            using carrier network data — the strongest signal available.
           </p>
 
           {/* CTAs */}

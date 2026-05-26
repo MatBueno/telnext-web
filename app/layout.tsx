@@ -24,22 +24,25 @@ const jetbrainsMono = JetBrains_Mono({
 })
 
 export const metadata: Metadata = {
-  title: 'Telnext — One API. Every network.',
+  title: 'Telnext — Silent Security for Financial Services',
   description:
-    'Intelligent routing layer for CAMARA / Open Gateway APIs. Access device location, number verification and SIM swap across Sinch, Twilio and Infobip with one API key.',
+    'Real-time identity verification for banks and fintechs. SIM swap detection, number verification and device location via carrier network data. No OTP. No telco contracts.',
+  keywords:
+    'SIM swap detection, number verification, identity fraud, fintech security, CAMARA API, Open Gateway, LATAM',
   metadataBase: new URL('https://telnext.dev'),
   openGraph: {
-    title: 'Telnext — One API. Every network.',
+    title: 'Telnext — Silent Security for Financial Services',
     description:
-      'No telco contracts. One API key. Automatic routing by coverage, price and performance.',
+      'Real-time identity verification for banks and fintechs. No OTP. No telco contracts.',
     url: 'https://telnext.dev',
     siteName: 'Telnext',
     type: 'website',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Telnext — One API. Every network.',
-    description: 'CAMARA Open Gateway APIs with automatic routing. Sandbox-ready. Production-grade.',
+    title: 'Telnext — Silent Security for Financial Services',
+    description:
+      'Real-time identity verification for banks and fintechs. SIM swap detection, number verification via carrier network data.',
   },
   icons: {
     icon: '/logo/favicon.svg',

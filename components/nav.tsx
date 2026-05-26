@@ -43,8 +43,12 @@ export default function Nav() {
         }}
       >
         {/* Brand lockup */}
-        <a className="brand" href="/" aria-label="Telnext">
-          <svg width="32" height="32" viewBox="0 0 240 240" aria-hidden="true">
+        <a
+          href="/"
+          aria-label="Telnext"
+          style={{ display: 'inline-flex', alignItems: 'center', gap: 12, textDecoration: 'none' }}
+        >
+          <svg width="36" height="36" viewBox="0 0 240 240" aria-hidden="true">
             <g
               fill="none"
               stroke="var(--blue-500)"
@@ -61,7 +65,17 @@ export default function Nav() {
               <circle cx="120" cy="196" r="18" />
             </g>
           </svg>
-          <span>telnext</span>
+          <span
+            style={{
+              fontFamily: 'var(--font-display)',
+              fontWeight: 600,
+              fontSize: '28px',
+              letterSpacing: '-0.04em',
+              color: 'var(--ink)',
+            }}
+          >
+            telnext<span style={{ color: 'var(--blue-500)' }}>.dev</span>
+          </span>
         </a>
 
         {/* Desktop nav */}

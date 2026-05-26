@@ -25,7 +25,11 @@ export default function Footer() {
       >
         {/* Brand + copyright */}
         <div style={{ display: 'flex', alignItems: 'center', gap: 16 }}>
-          <a className="brand" href="/" aria-label="Telnext" style={{ fontSize: 16 }}>
+          <a
+            href="/"
+            aria-label="Telnext"
+            style={{ display: 'inline-flex', alignItems: 'center', gap: 10, textDecoration: 'none' }}
+          >
             <svg width="22" height="22" viewBox="0 0 240 240" aria-hidden="true">
               <g
                 fill="none"
@@ -43,7 +47,17 @@ export default function Footer() {
                 <circle cx="120" cy="196" r="18" />
               </g>
             </svg>
-            <span>telnext</span>
+            <span
+              style={{
+                fontFamily: 'var(--font-display)',
+                fontWeight: 600,
+                fontSize: '16px',
+                letterSpacing: '-0.04em',
+                color: 'var(--ink)',
+              }}
+            >
+              telnext<span style={{ color: 'var(--blue-500)' }}>.dev</span>
+            </span>
           </a>
           <span
             style={{
@@ -55,7 +69,7 @@ export default function Footer() {
             |
           </span>
           <p className="t-small" style={{ color: 'var(--ink-faint)' }}>
-            © 2025 telnext.dev · CAMARA Open Gateway APIs
+            © 2025 telnext.dev — Silent security for financial services
           </p>
         </div>
 

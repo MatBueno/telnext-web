@@ -1,9 +1,8 @@
 const FLOW_NODES = [
-  { label: 'Developer', sub: 'your app' },
+  { label: 'Your App', sub: 'login or transaction' },
   { label: 'Telnext API', sub: 'single endpoint', highlight: true },
-  { label: 'Routing Engine', sub: 'coverage · price · perf', highlight: true },
-  { label: 'Providers', sub: 'Sinch · Twilio · Infobip', multi: true },
-  { label: 'Carrier', sub: 'real network' },
+  { label: 'Tier-1 Carriers', sub: 'carrier network', highlight: true },
+  { label: 'Verified Response', sub: 'in under 200ms' },
 ]
 
 function ArrowRight() {
@@ -128,12 +127,12 @@ export default function HowItWorks() {
             how it works
           </p>
           <h2 className="t-h2" style={{ color: 'var(--ink)', marginBottom: 16 }}>
-            Automatic routing, every call
+            Silent verification, every request
           </h2>
           <p className="t-body" style={{ color: 'var(--ink-dim)', maxWidth: 540, margin: '0 auto' }}>
-            Telnext selects the best provider for each call automatically — by
-            carrier coverage, price and historical performance. If one provider
-            fails, we fallback instantly. You get one response. We handle the rest.
+            Every time a user logs in or initiates a transaction, Telnext
+            silently verifies identity at the carrier level — in under 200ms,
+            with no user friction.
           </p>
         </div>
 
@@ -147,15 +146,13 @@ export default function HowItWorks() {
             gap: '16px 8px',
           }}
         >
-          <Node label="Developer" sub="your app" />
+          <Node label="Your App" sub="login or transaction" />
           <ArrowRight />
           <Node label="Telnext API" sub="single endpoint" highlight />
           <ArrowRight />
-          <Node label="Routing Engine" sub="coverage · price · perf" highlight />
+          <Node label="Tier-1 Carriers" sub="carrier network" highlight />
           <ArrowRight />
-          <Node label="Providers" sub="Sinch · Twilio · Infobip" multi />
-          <ArrowRight />
-          <Node label="Carrier" sub="real network" />
+          <Node label="Verified Response" sub="in under 200ms" />
         </div>
 
         {/* Fallback note */}

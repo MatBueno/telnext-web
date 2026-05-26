@@ -22,7 +22,7 @@ export default function Waitlist() {
 
       if (res.ok) {
         setStatus('success')
-        setMessage("You're on the list. We'll reach out when Brazil goes live.")
+        setMessage("You're on the list. We'll reach out when tier-1 carriers go live.")
         setEmail('')
       } else {
         setStatus('error')
@@ -59,9 +59,9 @@ export default function Waitlist() {
             Join the early access list
           </h2>
           <p className="t-body" style={{ color: 'var(--ink-dim)', marginBottom: 40 }}>
-            Be first when Brazil carriers go live.
+            Built for banks and fintechs in LATAM.
             <br />
-            One email when you&apos;re in. No spam.
+            Be first when tier-1 carriers go live.
           </p>
 
           {status === 'success' ? (
