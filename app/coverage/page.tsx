@@ -69,7 +69,7 @@ export default function CoveragePage() {
         </div>
 
         {/* Overview grid */}
-        <CoverageMap />
+        <CoverageMap dict={dict.coverageMap} />
 
         {/* Detailed breakdown */}
         <section

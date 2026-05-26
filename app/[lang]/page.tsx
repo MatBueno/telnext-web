@@ -27,8 +27,8 @@ export default function Home({ params }: { params: { lang: string } }) {
         <CodeWindow dict={dict.codeWindow} />
         <HowItWorks dict={dict.howItWorks} />
         <ApisSection dict={dict.apis} />
-        <CoverageMap />
-        <SandboxWidget />
+        <CoverageMap dict={dict.coverageMap} />
+        <SandboxWidget dict={dict.sandboxWidget} />
         <OnboardingSteps dict={dict.onboarding} />
         <InfrastructureSection dict={dict.infrastructure} />
         <PricingSection dict={dict.pricing} />

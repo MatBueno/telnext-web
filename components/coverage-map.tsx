@@ -1,38 +1,28 @@
 import { COVERAGE } from '@/lib/constants'
+import type { Dict } from '@/lib/i18n'
 
-const STATUS_CONFIG = {
-  full: {
-    label: 'full coverage',
-    className: 'status-full',
-    dot: 'var(--success)',
-  },
-  partial: {
-    label: 'partial',
-    className: 'status-partial',
-    dot: 'var(--warning)',
-  },
-  soon: {
-    label: 'coming soon',
-    className: 'status-soon',
-    dot: 'var(--ink-faint)',
-  },
-}
+type CoverageDict = Dict['coverageMap']
 
-export default function CoverageMap() {
+export default function CoverageMap({ dict }: { dict: CoverageDict }) {
+  const statusConfig = {
+    full: { label: dict.statusFull, dot: 'var(--success)' },
+    partial: { label: dict.statusPartial, dot: 'var(--warning)' },
+    soon: { label: dict.statusSoon, dot: 'var(--ink-faint)' },
+  }
+
   return (
     <section className="section" id="coverage">
       <div className="container">
         {/* Header */}
         <div style={{ marginBottom: 48 }}>
           <p className="t-label" style={{ color: 'var(--blue-500)', marginBottom: 12 }}>
-            carrier coverage
+            {dict.label}
           </p>
           <h2 className="t-h2" style={{ color: 'var(--ink)', marginBottom: 12 }}>
-            Where we route
+            {dict.title}
           </h2>
           <p className="t-body" style={{ color: 'var(--ink-dim)', maxWidth: 480 }}>
-            Live routing across major carriers. Coverage expanding every month
-            as new operators join the CAMARA Open Gateway program.
+            {dict.body}
           </p>
         </div>
 
@@ -45,7 +35,8 @@ export default function CoverageMap() {
           }}
         >
           {COVERAGE.map((item) => {
-            const config = STATUS_CONFIG[item.status]
+            const config = statusConfig[item.status]
+            const countryName = dict.countries[item.country] ?? item.country
             return (
               <div
                 key={item.country}
@@ -74,7 +65,7 @@ export default function CoverageMap() {
                         letterSpacing: '-0.02em',
                       }}
                     >
-                      {item.country}
+                      {countryName}
                     </p>
                     {item.carriers.length > 0 ? (
                       <p className="t-small" style={{ color: 'var(--ink-faint)' }}>
@@ -82,7 +73,7 @@ export default function CoverageMap() {
                       </p>
                     ) : (
                       <p className="t-small" style={{ color: 'var(--ink-faint)' }}>
-                        no carriers yet
+                        {dict.noCarriers}
                       </p>
                     )}
                   </div>
@@ -99,7 +90,15 @@ export default function CoverageMap() {
                       flexShrink: 0,
                     }}
                   />
-                  <span className={config.className}>{config.label}</span>
+                  <span
+                    style={{
+                      fontFamily: 'var(--font-mono)',
+                      fontSize: 11,
+                      color: config.dot,
+                    }}
+                  >
+                    {config.label}
+                  </span>
                 </div>
               </div>
             )
@@ -115,8 +114,8 @@ export default function CoverageMap() {
             flexWrap: 'wrap',
           }}
         >
-          {Object.entries(STATUS_CONFIG).map(([key, config]) => (
-            <div key={key} style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
+          {Object.values(statusConfig).map((config) => (
+            <div key={config.label} style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
               <div
                 style={{
                   width: 6,

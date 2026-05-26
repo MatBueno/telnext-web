@@ -1,6 +1,9 @@
 'use client'
 
 import { useState } from 'react'
+import type { Dict } from '@/lib/i18n'
+
+type SandboxDict = Dict['sandboxWidget']
 
 const MOCK_RESPONSE = {
   data: {
@@ -17,7 +20,7 @@ const MOCK_RESPONSE = {
   },
 }
 
-export default function SandboxWidget() {
+export default function SandboxWidget({ dict }: { dict: SandboxDict }) {
   const [loading, setLoading] = useState(false)
   const [result, setResult] = useState<typeof MOCK_RESPONSE | null>(null)
   const [phone, setPhone] = useState('+5511999990000')
@@ -36,14 +39,13 @@ export default function SandboxWidget() {
         {/* Header */}
         <div style={{ marginBottom: 40 }}>
           <p className="t-label" style={{ color: 'var(--blue-500)', marginBottom: 12 }}>
-            live sandbox
+            {dict.label}
           </p>
           <h2 className="t-h2" style={{ color: 'var(--ink)', marginBottom: 12 }}>
-            Try it without a key
+            {dict.title}
           </h2>
           <p className="t-body" style={{ color: 'var(--ink-dim)', maxWidth: 480 }}>
-            Run a real request against our sandbox environment. No account needed.
-            Mock responses mirror production shape exactly.
+            {dict.body}
           </p>
         </div>
 
@@ -103,7 +105,7 @@ export default function SandboxWidget() {
                   className="t-label"
                   style={{ color: 'var(--ink-dim)', display: 'block', marginBottom: 6 }}
                 >
-                  phoneNumber
+                  {dict.phoneNumberLabel}
                 </label>
                 <input
                   type="tel"
@@ -166,10 +168,10 @@ export default function SandboxWidget() {
                         strokeDashoffset="8"
                       />
                     </svg>
-                    running…
+                    {dict.running}
                   </span>
                 ) : (
-                  'run request'
+                  dict.runRequest
                 )}
               </button>
             </div>
@@ -200,7 +202,7 @@ export default function SandboxWidget() {
                   color: 'var(--ink-dim)',
                 }}
               >
-                response
+                {dict.response}
               </span>
               {result && (
                 <div style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
@@ -237,12 +239,12 @@ export default function SandboxWidget() {
             >
               {!result && !loading && (
                 <p className="t-small" style={{ color: 'var(--ink-faint)' }}>
-                  Run a request to see the response
+                  {dict.emptyState}
                 </p>
               )}
               {loading && (
                 <p className="t-small" style={{ color: 'var(--ink-dim)' }}>
-                  Routing to best available provider…
+                  {dict.routing}
                 </p>
               )}
               {result && (

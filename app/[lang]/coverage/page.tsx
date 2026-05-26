@@ -54,6 +54,8 @@ const COVERAGE_DETAIL = [
 export default function CoveragePage({ params }: { params: { lang: string } }) {
   if (!isValidLocale(params.lang)) notFound()
   const dict = getDictionary(params.lang as Locale)
+  const c = dict.coverageMap
+  const liveCount = COVERAGE.filter((item) => item.status !== 'soon').length
 
   return (
     <>
@@ -63,21 +65,19 @@ export default function CoveragePage({ params }: { params: { lang: string } }) {
         <div style={{ padding: '80px 0 40px', borderBottom: '1px solid var(--border-subtle)' }}>
           <div className="container">
             <p className="t-label" style={{ color: 'var(--blue-500)', marginBottom: 12 }}>
-              coverage
+              {c.label}
             </p>
             <h1 className="t-h1" style={{ color: 'var(--ink)', marginBottom: 12 }}>
-              Where we route
+              {c.title}
             </h1>
             <p className="t-lead" style={{ color: 'var(--ink-dim)', maxWidth: 520 }}>
-              Live routing across major carriers in{' '}
-              {COVERAGE.filter((c) => c.status !== 'soon').length} countries.
-              Coverage expanding every month.
+              {c.body.replace('major carriers.', `major carriers in ${liveCount} countries.`)}
             </p>
           </div>
         </div>
 
         {/* Overview grid */}
-        <CoverageMap />
+        <CoverageMap dict={c} />
 
         {/* Detailed breakdown */}
         <section
@@ -86,7 +86,7 @@ export default function CoveragePage({ params }: { params: { lang: string } }) {
         >
           <div className="container">
             <h2 className="t-h2" style={{ color: 'var(--ink)', marginBottom: 40 }}>
-              API availability by carrier
+              {c.apisByCarrierTitle}
             </h2>
 
             <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
@@ -120,7 +120,7 @@ export default function CoveragePage({ params }: { params: { lang: string } }) {
                         letterSpacing: '-0.02em',
                       }}
                     >
-                      {country.country}
+                      {c.countries[country.country] ?? country.country}
                     </h3>
                   </div>
 
@@ -198,14 +198,14 @@ export default function CoveragePage({ params }: { params: { lang: string } }) {
                     marginBottom: 4,
                   }}
                 >
-                  Don&apos;t see your country?
+                  {c.requestTitle}
                 </p>
                 <p className="t-small" style={{ color: 'var(--ink-dim)' }}>
-                  Request coverage and we&apos;ll prioritize your region.
+                  {c.requestBody}
                 </p>
               </div>
               <a href="mailto:coverage@telnext.dev" className="btn btn-ghost">
-                request coverage
+                {c.requestCta}
               </a>
             </div>
           </div>

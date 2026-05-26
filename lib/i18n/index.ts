@@ -88,6 +88,31 @@ export type Dict = {
     body: string
     steps: { number: string; title: string; description: string }[]
   }
+  coverageMap: {
+    label: string
+    title: string
+    body: string
+    statusFull: string
+    statusPartial: string
+    statusSoon: string
+    noCarriers: string
+    countries: Record<string, string>
+    apisByCarrierTitle: string
+    requestTitle: string
+    requestBody: string
+    requestCta: string
+  }
+  sandboxWidget: {
+    label: string
+    title: string
+    body: string
+    phoneNumberLabel: string
+    runRequest: string
+    running: string
+    response: string
+    emptyState: string
+    routing: string
+  }
   codeWindow: { copy: string; copied: string }
 }
 
