@@ -29,7 +29,7 @@ const es: Dict = {
     nodes: [
       { label: 'Tu App', sub: 'inicio de sesión o transacción' },
       { label: 'API Telnext', sub: 'endpoint único', highlight: true },
-      { label: 'CPaaS Tier-1', sub: 'Infobip · Sinch · Vonage', highlight: true, multi: true },
+      { label: 'CPaaS Tier-1', sub: 'certificados GSMA · CAMARA ready · failover auto', highlight: true, multi: true },
       { label: 'Respuesta Verificada', sub: 'en menos de 200ms' },
     ],
     footerNote: 'Failover automático — cero configuración requerida',
@@ -91,7 +91,7 @@ const es: Dict = {
   infrastructure: {
     label: 'infraestructura',
     title: 'Construido sobre proveedores que tu equipo de seguridad ya conoce.',
-    body: 'Telnext enruta cada llamada de API a través de proveedores CPaaS certificados por GSMA Open Gateway — Infobip, Sinch, Vonage/Ericsson y pares — cada uno con relaciones directas con operadoras tier-1, APIs compatibles con CAMARA y uptime comprobado. Obtienes señales de identidad de nivel operadora sin gestionar un solo contrato con operadora.',
+    body: 'Telnext enruta cada llamada de API a través de proveedores CPaaS certificados por GSMA Open Gateway, cada uno con relaciones directas con operadoras tier-1, APIs compatibles con CAMARA y uptime comprobado. Obtienes señales de identidad de nivel operadora sin gestionar un solo contrato con operadora.',
     badges: [
       'Partners certificados GSMA Open Gateway',
       'Certificado GSMA Open Gateway',

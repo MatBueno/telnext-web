@@ -74,7 +74,7 @@ function Node({
               gap: 4,
             }}
           >
-            {['Sinch', 'Twilio', 'Infobip'].map((p) => (
+            {sub.split(' · ').map((p) => (
               <span
                 key={p}
                 style={{
