@@ -25,11 +25,11 @@ const en: Dict = {
   howItWorks: {
     label: 'how it works',
     title: 'Silent verification, every request',
-    body: 'Every request runs through Gartner MQ-ranked CPaaS providers with direct tier-1 carrier access — routed automatically by Telnext in under 200ms, with no user friction.',
+    body: 'Every request runs through GSMA Open Gateway certified CPaaS providers with direct tier-1 carrier access — routed automatically by Telnext in under 200ms, with no user friction.',
     nodes: [
       { label: 'Your App', sub: 'login or transaction' },
       { label: 'Telnext API', sub: 'single endpoint', highlight: true },
-      { label: 'Tier-1 CPaaS', sub: 'Sinch · Twilio · Infobip', highlight: true, multi: true },
+      { label: 'Tier-1 CPaaS', sub: 'Infobip · Sinch · Vonage', highlight: true, multi: true },
       { label: 'Verified Response', sub: 'in under 200ms' },
     ],
     footerNote: 'Automatic failover — zero config required',
@@ -91,9 +91,9 @@ const en: Dict = {
   infrastructure: {
     label: 'infrastructure',
     title: 'Built on providers your security team already trusts.',
-    body: 'Telnext routes every API call through Gartner Magic Quadrant CPaaS leaders — Sinch, Twilio, Infobip and peers — each with established tier-1 carrier relationships, regional compliance and proven uptime. You get carrier-grade identity signals without managing a single carrier contract.',
+    body: 'Telnext routes every API call through GSMA Open Gateway certified CPaaS providers — Infobip, Sinch, Vonage/Ericsson and peers — each with direct tier-1 carrier relationships, CAMARA-compliant APIs and proven uptime. You get carrier-grade identity signals without managing a single carrier contract.',
     badges: [
-      'Gartner Magic Quadrant leaders in CPaaS',
+      'GSMA Open Gateway certified partners',
       'GSMA Open Gateway certified',
       'CAMARA API compliant',
       'LATAM coverage: BR · MX · AR',

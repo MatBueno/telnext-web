@@ -25,11 +25,11 @@ const ptBr: Dict = {
   howItWorks: {
     label: 'como funciona',
     title: 'Verificação silenciosa, em cada requisição',
-    body: 'Cada requisição passa por provedores CPaaS líderes no Gartner MQ com acesso direto às operadoras tier-1 — roteada automaticamente pela Telnext em menos de 200ms, sem nenhum atrito para o usuário.',
+    body: 'Cada requisição passa por provedores CPaaS certificados pelo GSMA Open Gateway com acesso direto às operadoras tier-1 — roteada automaticamente pela Telnext em menos de 200ms, sem nenhum atrito para o usuário.',
     nodes: [
       { label: 'Seu App', sub: 'login ou transação' },
       { label: 'API Telnext', sub: 'endpoint único', highlight: true },
-      { label: 'CPaaS Tier-1', sub: 'Sinch · Twilio · Infobip', highlight: true, multi: true },
+      { label: 'CPaaS Tier-1', sub: 'Infobip · Sinch · Vonage', highlight: true, multi: true },
       { label: 'Resposta Verificada', sub: 'em menos de 200ms' },
     ],
     footerNote: 'Failover automático — zero configuração necessária',
@@ -91,9 +91,9 @@ const ptBr: Dict = {
   infrastructure: {
     label: 'infraestrutura',
     title: 'Construído sobre provedores que a equipe de segurança já conhece.',
-    body: 'A Telnext roteia cada chamada de API por líderes do Quadrante Mágico Gartner em CPaaS — Sinch, Twilio, Infobip e similares — cada um com relacionamentos diretos com operadoras tier-1, conformidade regional e uptime comprovado. Você obtém sinais de identidade de nível operadora sem gerenciar um único contrato com operadora.',
+    body: 'A Telnext roteia cada chamada de API por provedores CPaaS certificados pelo GSMA Open Gateway — Infobip, Sinch, Vonage/Ericsson e similares — cada um com relacionamentos diretos com operadoras tier-1, APIs compatíveis com CAMARA e uptime comprovado. Você obtém sinais de identidade de nível operadora sem gerenciar um único contrato com operadora.',
     badges: [
-      'Líderes no Quadrante Mágico Gartner em CPaaS',
+      'Parceiros certificados GSMA Open Gateway',
       'Certificado GSMA Open Gateway',
       'Compatível com CAMARA API',
       'Cobertura LATAM: BR · MX · AR',
