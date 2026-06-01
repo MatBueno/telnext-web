@@ -66,7 +66,20 @@ function Node({
             }}
           />
         )}
-        {multi ? (
+        <span
+          style={{
+            fontFamily: 'var(--font-display)',
+            fontSize: 13,
+            fontWeight: 600,
+            color: highlight ? 'var(--blue-300)' : 'var(--ink)',
+            whiteSpace: 'nowrap',
+            display: 'block',
+            marginBottom: multi ? 8 : 0,
+          }}
+        >
+          {label}
+        </span>
+        {multi && (
           <div
             style={{
               display: 'flex',
@@ -92,23 +105,13 @@ function Node({
               </span>
             ))}
           </div>
-        ) : (
-          <span
-            style={{
-              fontFamily: 'var(--font-display)',
-              fontSize: 13,
-              fontWeight: 600,
-              color: highlight ? 'var(--blue-300)' : 'var(--ink)',
-              whiteSpace: 'nowrap',
-            }}
-          >
-            {label}
-          </span>
         )}
       </div>
-      <span className="t-label" style={{ color: 'var(--ink-faint)', textAlign: 'center' }}>
-        {sub}
-      </span>
+      {!multi && (
+        <span className="t-label" style={{ color: 'var(--ink-faint)', textAlign: 'center' }}>
+          {sub}
+        </span>
+      )}
     </div>
   )
 }
