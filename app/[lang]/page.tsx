@@ -55,6 +55,7 @@ function OnboardingSteps({ dict }: { dict: Dict['onboarding'] }) {
           </p>
         </div>
         <div
+          className="mobile-scroll"
           style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))',
@@ -66,7 +67,7 @@ function OnboardingSteps({ dict }: { dict: Dict['onboarding'] }) {
           }}
         >
           {dict.steps.map((step) => (
-            <div key={step.number} style={{ background: 'var(--bg-elev-1)', padding: '28px 24px' }}>
+            <div key={step.number} className="mobile-scroll-step" style={{ background: 'var(--bg-elev-1)', padding: '28px 24px' }}>
               <span
                 style={{
                   fontFamily: 'var(--font-mono)',

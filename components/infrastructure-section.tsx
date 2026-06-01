@@ -57,6 +57,7 @@ export default function InfrastructureSection({ dict }: { dict: Dict['infrastruc
 
         {/* Compliance cards */}
         <div
+          className="mobile-scroll"
           style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fill, minmax(240px, 1fr))',

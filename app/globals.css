@@ -307,3 +307,39 @@ body {
   font-size: 10px;
   font-weight: 500;
 }
+
+/* ── Mobile scroll carousels ──────────────────────────────── */
+@media (max-width: 640px) {
+  .mobile-scroll {
+    display: flex !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    gap: 12px !important;
+    /* bleed to viewport edge so next card peeks */
+    margin-left: -24px !important;
+    margin-right: -24px !important;
+    padding-left: 24px !important;
+    padding-right: 24px !important;
+    padding-bottom: 8px;
+    /* reset any decorative container styles */
+    background: transparent !important;
+    border: none !important;
+    border-radius: 0 !important;
+  }
+  .mobile-scroll::-webkit-scrollbar { display: none; }
+
+  .mobile-scroll > * {
+    flex: 0 0 82%;
+    min-width: 0;
+    scroll-snap-align: start;
+  }
+
+  /* step cards need their own border when removed from the gap-trick container */
+  .mobile-scroll-step {
+    border: 1px solid var(--border-subtle) !important;
+    border-radius: 10px !important;
+  }
+}

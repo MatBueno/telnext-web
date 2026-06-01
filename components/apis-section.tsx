@@ -54,6 +54,7 @@ export default function ApisSection({ dict }: { dict: Dict['apis'] }) {
 
         {/* Live API cards */}
         <div
+          className="mobile-scroll"
           style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
@@ -100,6 +101,7 @@ export default function ApisSection({ dict }: { dict: Dict['apis'] }) {
 
         {/* Coming soon API cards */}
         <div
+          className="mobile-scroll"
           style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',

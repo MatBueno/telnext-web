@@ -28,6 +28,7 @@ export default function CoverageMap({ dict }: { dict: CoverageDict }) {
 
         {/* Country grid */}
         <div
+          className="mobile-scroll"
           style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
