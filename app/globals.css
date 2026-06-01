@@ -201,6 +201,12 @@ body {
   padding: 96px 0;
 }
 
+@media (max-width: 640px) {
+  .section {
+    padding: 56px 0;
+  }
+}
+
 /* ─── Badge ────────────────────────────────────────────────── */
 .badge {
   display: inline-flex;
