@@ -348,4 +348,14 @@ body {
     border: 1px solid var(--border-subtle) !important;
     border-radius: 10px !important;
   }
+
+  /* how-it-works flow: stack vertically with arrows rotated */
+  .flow-diagram {
+    flex-direction: column !important;
+    flex-wrap: nowrap !important;
+    gap: 8px !important;
+  }
+  .flow-arrow {
+    transform: rotate(90deg);
+  }
 }

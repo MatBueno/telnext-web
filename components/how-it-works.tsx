@@ -9,6 +9,7 @@ function ArrowRight() {
       viewBox="0 0 24 24"
       fill="none"
       aria-hidden="true"
+      className="flow-arrow"
       style={{ flexShrink: 0, color: 'var(--ink-faint)' }}
     >
       <path
@@ -135,6 +136,7 @@ export default function HowItWorks({ dict }: { dict: Dict['howItWorks'] }) {
 
         {/* Flow diagram */}
         <div
+          className="flow-diagram"
           style={{
             display: 'flex',
             alignItems: 'center',
